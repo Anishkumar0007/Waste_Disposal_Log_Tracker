@@ -1,0 +1,5 @@
+@EndUserText.label: 'Waste Tracker Service Definition'
+define service ZCIT_SD__22IT010 {
+  expose ZCIT_C_H_22IT010 as LogHeader;
+  expose ZCIT_C_I_22IT010 as LogItem;
+}

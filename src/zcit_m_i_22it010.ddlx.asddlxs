@@ -1,0 +1,46 @@
+@Metadata.layer: #CORE
+@UI: { 
+  headerInfo: { 
+    typeName: 'Waste Item', 
+    typeNamePlural: 'Waste Items', 
+    title: { type: #STANDARD, value: 'WasteId' } 
+  } 
+}
+annotate entity ZCIT_C_I_22IT010 with
+{
+  @UI.facet: [ 
+    { id: 'ItemData', purpose: #STANDARD, type: #IDENTIFICATION_REFERENCE, label: 'Waste Details', position: 10 } 
+  ]
+
+  @EndUserText.label: 'Waste ID'
+  @UI: { lineItem: [{position: 10, label: 'Waste ID'}], identification: [{position: 10}] }
+  WasteId;
+
+  @EndUserText.label: 'Waste Type'
+  @UI: { lineItem: [{position: 20, label: 'Waste Type'}], identification: [{position: 20}] }
+  WasteType;
+
+  @EndUserText.label: 'Category'
+  @UI: { lineItem: [{position: 30, label: 'Category'}], identification: [{position: 30}] }
+  Category;
+
+  @EndUserText.label: 'Quantity'
+  @UI: { lineItem: [{position: 40, label: 'Quantity'}], identification: [{position: 40}] }
+  Quantity;
+
+  @EndUserText.label: 'Disposal Method'
+  @UI: { lineItem: [{position: 50, label: 'Disposal Method'}], identification: [{position: 50}] }
+  DisposalMethod;
+
+  @EndUserText.label: 'Cost'
+  @UI: { lineItem: [{position: 60, label: 'Cost'}], identification: [{position: 60}] }
+  Cost;
+
+  @EndUserText.label: 'Vendor Name'
+  @UI: { lineItem: [{position: 70, label: 'Vendor Name'}], identification: [{position: 70}] }
+  VendorName;
+
+  @EndUserText.label: 'Remarks'
+  @UI: { identification: [{position: 80, label: 'Remarks'}] }
+  Remarks;
+}

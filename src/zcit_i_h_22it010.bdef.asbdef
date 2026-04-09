@@ -1,0 +1,89 @@
+unmanaged implementation in class zbp_ci_h_22it010 unique;
+strict ( 2 );
+with draft;
+
+define behavior for ZCIT_I_H_22IT010 alias LogHdr
+draft table zcit_d_h_22it010
+lock master total etag LocalLastChangedAt
+authorization master ( instance )
+etag master LocalLastChangedAt
+{
+  create ( authorization : global );
+  update;
+  delete;
+
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+  draft action Activate optimized;
+  draft action Discard;
+
+  field ( mandatory : create ) LogId;
+  field ( readonly : update ) LogId;
+  field ( readonly ) LocalLastChangedAt;
+
+    field ( readonly ) Status;
+
+      action markAsApproved result [1] $self;
+
+  association _LogItem { create; with draft; }
+
+  mapping for zcit_hdr_22it010 {
+    LogId = log_id;
+    DisposalDate = disposal_date;
+    Location = location;
+    Department = department;
+    DisposalType = disposal_type;
+    Vendor = vendor;
+    TotalQty = total_qty;
+    Unit = unit;
+    Status = status;
+    Remarks = remarks;
+    LocalCreatedAt = local_created_at;
+    LocalCreatedBy = local_created_by;
+    LocalLastChangedAt = local_last_changed_at;
+    LocalLastChangedBy = local_last_changed_by;
+  }
+}
+
+define behavior for ZCIT_I_I_22IT010 alias LogItm
+implementation in class zbp_ci_i_22it010 unique
+draft table zcit_d_i_22it010
+lock dependent by _LogHeader
+authorization dependent by _LogHeader
+etag master LocalLastChangedAt
+{
+  update;
+  delete;
+
+
+  determination calculateCost on modify { field Quantity, WasteType; }
+
+  field ( mandatory : create ) WasteId;
+  field ( readonly : update ) WasteId;
+  field ( readonly ) LogId;
+
+
+    field ( readonly ) Cost;
+
+
+  determination calculateValues on modify { field Quantity, WasteType; }
+
+
+  association _LogHeader { with draft; }
+
+  mapping for zcit_itm_22it010 {
+    LogId = log_id;
+    WasteId = waste_id;
+    WasteType = waste_type;
+    Category = category;
+    Quantity = quantity;
+    Unit = unit;
+    DisposalMethod = disposal_method;
+    Cost = cost;
+    Currency = currency;
+    VendorName = vendor_name;
+    Remarks = remarks;
+    LocalLastChangedAt = local_last_changed_at;
+  }
+}

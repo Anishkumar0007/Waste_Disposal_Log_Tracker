@@ -1,0 +1,59 @@
+@Metadata.layer: #CORE
+@UI: { 
+  headerInfo: { 
+    typeName: 'Disposal Log', 
+    typeNamePlural: 'Disposal Logs', 
+    title: { type: #STANDARD, value: 'LogId' } 
+  } 
+}
+annotate entity ZCIT_C_H_22IT010 with
+{
+  @UI.facet: [ 
+    { id: 'HeaderData', purpose: #STANDARD, type: #IDENTIFICATION_REFERENCE, label: 'Log Details', position: 10 },
+    { id: 'Items', purpose: #STANDARD, type: #LINEITEM_REFERENCE, label: 'Waste Breakdown', position: 20, targetElement: '_LogItem' } 
+  ]
+
+  @EndUserText.label: 'Log ID'
+  @UI: { lineItem: [{position: 10, label: 'Log ID'}], identification: [{position: 10}], selectionField: [{position: 10}] }
+  LogId;
+
+  @EndUserText.label: 'Disposal Date'
+  @UI: { lineItem: [{position: 20, label: 'Disposal Date'}], identification: [{position: 20}] }
+  DisposalDate;
+
+  @EndUserText.label: 'Location'
+  @UI: { lineItem: [{position: 30, label: 'Location'}], identification: [{position: 30}] }
+  Location;
+
+  @EndUserText.label: 'Department'
+  @UI: { lineItem: [{position: 40, label: 'Department'}], identification: [{position: 40}] }
+  Department;
+
+  @EndUserText.label: 'Disposal Type'
+  @UI: { lineItem: [{position: 50, label: 'Disposal Type'}], identification: [{position: 50}] }
+  DisposalType;
+
+  @EndUserText.label: 'Total Quantity'
+  @UI: { lineItem: [{position: 60, label: 'Total Quantity'}], identification: [{position: 60}] }
+  TotalQty;
+
+@UI: { 
+    lineItem: [
+      { position: 70, criticality: 'StatusCriticality' },
+      { type: #FOR_ACTION, dataAction: 'markAsApproved', label: 'Approve' }
+    ], 
+    identification: [
+      { position: 70, criticality: 'StatusCriticality' },
+      { type: #FOR_ACTION, dataAction: 'markAsApproved', label: 'Mark as Approved' }
+    ] 
+  }
+  Status;
+
+  @EndUserText.label: 'Vendor'
+  @UI: { identification: [{position: 80, label: 'Vendor'}] }
+  Vendor;
+
+  @EndUserText.label: 'Remarks'
+  @UI: { identification: [{position: 90, label: 'Remarks'}] }
+  Remarks;
+}

@@ -1,0 +1,27 @@
+projection;
+strict ( 2 );
+use draft;
+
+define behavior for ZCIT_C_H_22IT010 alias LogHdr
+{
+  use create;
+  use update;
+  use delete;
+
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Prepare;
+  use action Resume;
+  use action markAsApproved;
+
+  use association _LogItem { create; with draft; }
+}
+
+define behavior for ZCIT_C_I_22IT010 alias LogItm
+{
+  use update;
+  use delete;
+
+  use association _LogHeader { with draft; }
+}
